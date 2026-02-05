@@ -13,11 +13,14 @@ CLI für [apohealth.de](https://www.apohealth.de) – Apotheken-Produkte suchen,
 ## Installation
 
 ```bash
-# Direkt ausführen
-python3 apo_cli.py --help
+# Mit uvx (empfohlen) - einmalig ausführen
+uvx --from git+https://github.com/Lars147/apo-cli apo --help
 
-# Oder als Alias
-alias apo="python3 /path/to/apo_cli.py"
+# Mit pipx
+pipx install git+https://github.com/Lars147/apo-cli
+
+# Oder direkt ausführen
+python3 apo_cli.py --help
 ```
 
 **Keine Dependencies!** Pure Python stdlib.
