@@ -1,56 +1,68 @@
-# apo-cli 💊
+<h1 align="center">apo-cli 💊</h1>
 
-CLI for [apohealth.de](https://www.apohealth.de) – search pharmacy products, manage your cart, checkout in browser.
+<p align="center">
+  <strong>Your pharmacy in the terminal — search products, manage cart, checkout in browser</strong>
+</p>
 
-## Installation
+<p align="center">
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9+-blue.svg" alt="Python 3.9+"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License"></a>
+  <img src="https://img.shields.io/badge/dependencies-none-brightgreen.svg" alt="Zero Dependencies">
+</p>
+
+---
+
+## 🚀 Quick Start
 
 ```bash
 uv tool install git+https://github.com/Lars147/apo-cli
+apo search "Aspirin"
 ```
 
-No dependencies – pure Python stdlib.
+---
 
-## Usage
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 🔍 **Search** | Find products by name or PZN |
+| 📦 **Product Details** | Prices, availability, descriptions |
+| 🗂️ **Categories** | Browse product collections |
+| 🛒 **Cart** | Add, remove, view items |
+| 🌐 **Checkout** | Opens browser with your cart |
+| 🤖 **AI-Friendly** | Designed for Claude, Codex, OpenClaw |
+
+---
+
+## 📖 Usage
 
 ```bash
-# Search products
-apo search "Aspirin"
+# Search
 apo search "Ibuprofen 400"
 
 # Product details
-apo product aspirin-complex-granulat-20-st-beutel-4114918
+apo product <handle>
 
-# Browse categories
+# Categories
 apo categories
-apo list --category bestseller --limit 10
+apo list --category bestseller
 
-# Cart management
-apo cart                           # Show cart
-apo cart add <variant_id>          # Add product
-apo cart add <variant_id> --qty 2  # Add with quantity
-apo cart remove <variant_id>       # Remove product
-apo cart clear                     # Clear cart
-
-# Checkout (opens browser)
-apo cart checkout
+# Cart
+apo cart                      # Show
+apo cart add <variant_id>     # Add
+apo cart remove <variant_id>  # Remove
+apo cart clear                # Clear
+apo cart checkout             # Open browser
 ```
 
-## Workflow
+---
 
-1. `apo search "Aspirin"` → Find product
-2. `apo product <handle>` → Get variant ID
-3. `apo cart add <variant_id>` → Add to cart
-4. `apo cart checkout` → Pay in browser
+## ⚠️ Disclaimer
 
-## For AI Agents
+Unofficial tool for [apohealth.de](https://www.apohealth.de). Not affiliated with apohealth.
 
-This CLI is designed for AI assistants:
-- Structured output, no interactive prompts
-- Session persistence across conversations
-- Clear commands for automation
+---
 
-MCP server planned for native Claude integration.
+## 📄 License
 
-## License
-
-MIT
+MIT © [Lars Heinen](https://github.com/Lars147)
