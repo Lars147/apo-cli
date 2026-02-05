@@ -334,9 +334,26 @@ def clear_cart() -> tuple[bool, str]:
     return False, "Fehler beim Leeren"
 
 
-def get_checkout_url() -> str:
-    """Get checkout URL."""
-    return f"{BASE_URL}/checkout"
+def build_cart_permalink(items: list[dict]) -> str:
+    """Build Shopify cart permalink URL.
+    
+    Format: /cart/{variant_id}:{quantity},{variant_id}:{quantity},...
+    This creates a new cart in the browser with the specified items.
+    """
+    if not items:
+        return f"{BASE_URL}/cart"
+    
+    parts = []
+    for item in items:
+        variant_id = item.get("variant_id") or item.get("id")
+        quantity = item.get("quantity", 1)
+        if variant_id:
+            parts.append(f"{variant_id}:{quantity}")
+    
+    if not parts:
+        return f"{BASE_URL}/cart"
+    
+    return f"{BASE_URL}/cart/{','.join(parts)}"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -781,14 +798,19 @@ def cmd_cart_checkout(args):
         print()
         return
     
-    checkout_url = get_checkout_url()
+    items = cart.get("items", [])
     
-    print(f"   {checkout_url}")
+    # Build cart permalink - this creates a new cart in browser with our items
+    checkout_url = build_cart_permalink(items)
+    
+    print(f"\n   Artikel: {len(items)}")
+    print(f"   URL: {checkout_url}")
     print()
     
     try:
         webbrowser.open(checkout_url)
-        print("✅ Browser geöffnet. Viel Erfolg beim Bestellen!")
+        print("✅ Browser geöffnet mit deinen Artikeln!")
+        print("   Der Browser hat jetzt einen neuen Warenkorb mit deinen Produkten.")
     except Exception as e:
         print(f"❌ Konnte Browser nicht öffnen: {e}")
         print(f"   Bitte manuell öffnen: {checkout_url}")
