@@ -13,11 +13,14 @@ CLI für [apohealth.de](https://www.apohealth.de) – Apotheken-Produkte suchen,
 ## Installation
 
 ```bash
-# Mit uvx (empfohlen) - einmalig ausführen
-uvx --from git+https://github.com/Lars147/apo-cli apo --help
+# Mit uv (empfohlen)
+uv tool install git+https://github.com/Lars147/apo-cli
 
-# Mit pipx
-pipx install git+https://github.com/Lars147/apo-cli
+# Dann einfach:
+apo search "Aspirin"
+
+# Oder einmalig ohne Installation:
+uvx --from git+https://github.com/Lars147/apo-cli apo --help
 
 # Oder direkt ausführen
 python3 apo_cli.py --help
