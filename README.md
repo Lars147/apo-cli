@@ -1,91 +1,56 @@
 # apo-cli 💊
 
-CLI für [apohealth.de](https://www.apohealth.de) – Apotheken-Produkte suchen, Warenkorb verwalten, im Browser bestellen.
-
-## Features
-
-- 🔍 **Produktsuche** – Nach Name oder PZN suchen
-- 📦 **Produktdetails** – Preise, Verfügbarkeit, Beschreibung
-- 🗂️ **Kategorien** – Collections durchstöbern
-- 🛒 **Warenkorb** – Hinzufügen, entfernen, anzeigen
-- 🌐 **Checkout** – Öffnet Browser mit befülltem Warenkorb
+CLI for [apohealth.de](https://www.apohealth.de) – search pharmacy products, manage your cart, checkout in browser.
 
 ## Installation
 
 ```bash
-# Mit uv (empfohlen)
 uv tool install git+https://github.com/Lars147/apo-cli
-
-# Dann einfach:
-apo search "Aspirin"
-
-# Oder einmalig ohne Installation:
-uvx --from git+https://github.com/Lars147/apo-cli apo --help
-
-# Oder direkt ausführen
-python3 apo_cli.py --help
 ```
 
-**Keine Dependencies!** Pure Python stdlib.
+No dependencies – pure Python stdlib.
 
-## Verwendung
+## Usage
 
 ```bash
-# Produktsuche
+# Search products
 apo search "Aspirin"
 apo search "Ibuprofen 400"
 
-# Produktdetails
+# Product details
 apo product aspirin-complex-granulat-20-st-beutel-4114918
 
-# Kategorien anzeigen
+# Browse categories
 apo categories
-
-# Produkte einer Kategorie
 apo list --category bestseller --limit 10
 
-# Warenkorb
-apo cart                          # Anzeigen
-apo cart add 32907653677119       # Hinzufügen (Variant-ID)
-apo cart add 32907653677119 --qty 2
-apo cart remove 32907653677119    # Entfernen
-apo cart clear                    # Leeren
+# Cart management
+apo cart                           # Show cart
+apo cart add <variant_id>          # Add product
+apo cart add <variant_id> --qty 2  # Add with quantity
+apo cart remove <variant_id>       # Remove product
+apo cart clear                     # Clear cart
 
-# Checkout im Browser
+# Checkout (opens browser)
 apo cart checkout
-
-# Status
-apo status
 ```
 
 ## Workflow
 
-1. `apo search "Aspirin"` – Produkt finden
-2. `apo product <handle>` – Details & Variant-ID holen
-3. `apo cart add <variant_id>` – In Warenkorb legen
-4. `apo cart checkout` – Im Browser bezahlen
+1. `apo search "Aspirin"` → Find product
+2. `apo product <handle>` → Get variant ID
+3. `apo cart add <variant_id>` → Add to cart
+4. `apo cart checkout` → Pay in browser
 
-## Technische Details
+## For AI Agents
 
-- **API**: Shopify Storefront APIs (undokumentiert, aber stabil)
-- **Session**: Cookies werden in `apo_cookies.json` gespeichert
-- **Warenkorb**: Cart-Token in `apo_cart.json` für Persistenz
+This CLI is designed for AI assistants:
+- Structured output, no interactive prompts
+- Session persistence across conversations
+- Clear commands for automation
 
-## Limitierungen
+MCP server planned for native Claude integration.
 
-- Kein Login (OAuth + Captcha zu komplex)
-- Checkout nur im Browser (Zahlungsabwicklung)
-- PZN-Direktsuche eingeschränkt (Volltext-Suche funktioniert)
-
-## Für AI-Agenten
-
-Diese CLI ist optimiert für AI-Assistenten:
-- Strukturierte JSON-Ausgabe möglich
-- Klare Befehle ohne interaktive Prompts
-- Session-Persistenz über Gespräche hinweg
-
-Geplant: MCP Server für native Claude-Integration.
-
-## Lizenz
+## License
 
 MIT
