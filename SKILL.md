@@ -14,10 +14,11 @@ Search pharmacy products and manage cart on apohealth.de using `apo-cli` — a p
 
 ## Critical Rules
 
-1. **NEVER complete a purchase** — Only build cart. User must checkout themselves via `cart checkout` (opens browser).
-2. **Confirm before destructive actions** (cart clear).
-3. **Show prices** when adding to cart so the user stays informed.
-4. **PZN search** — Users may provide a PZN (Pharmazentralnummer) directly; pass it as the search query.
+1. **NEVER complete a purchase** — Only build cart. User must checkout themselves.
+2. **Always provide the cart URL** when interacting via chat: `https://www.apohealth.de/cart/<variant_id>:<qty>,<variant_id>:<qty>,...` — the user cannot open a browser from the agent, so they need a clickable link.
+3. **Confirm before destructive actions** (cart clear).
+4. **Show prices** when adding to cart so the user stays informed.
+5. **PZN search** — Users may provide a PZN (Pharmazentralnummer) directly; pass it as the search query.
 
 ## CLI Usage
 
